@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4조</title>
+  </head>
+  <body>
+    <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
+    {% block content %} {% if user.is_authenticated %}
+    <p>{{user.username}} 님이 로그인 중</p>
+    <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+    <li><a href="">게임하기</a></li>
+    <li><a href="">랭킹보기</a></li>
+    <li><a href="">전적보기</a></li>
+    {% else %}
+    <li><a href="{% url 'cardgame:login' %}">로그인</a></li>
+    <li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
+    <li><a href="{% url 'cardgame:login' %}">게임하기</a></li>
+    {% endif %} {% endblock content %}
+    <form action="/defend" method="POST">
+      {% csrf_token %}
+      <table>
+        {{form}}
+      </table>
+      <input type="submit" value="제출" />
+    </form>
+  </body>
+</html>

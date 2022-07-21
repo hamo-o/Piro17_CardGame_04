@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.urls import is_valid_path
 from django.views import View
 from . import forms
 from .models import User
@@ -53,3 +54,21 @@ def sign_up(request):
 def log_out(request):
     logout(request)
     return redirect("cardgame:main")
+
+def defend(request):
+    if request.method == "POST":
+        form = forms.DefendForm(request.POST)
+        
+        if form.is_valid():
+            defend = form.save()
+            defend.user = request.user
+            defend.save()
+            return redirect('/')
+        else :
+            return redirect('/')
+    else :
+        form = forms.DefendForm()
+        context = {
+            'form' : form
+        }
+        return render(request, 'cardgame/defend.html', context=context)
