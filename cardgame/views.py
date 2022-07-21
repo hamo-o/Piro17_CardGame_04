@@ -83,7 +83,7 @@ def defend(request, pk):
                         game.victory_user = game.defender
                         game.attacker.point -= game.attack_card
                         game.defender.point += game.defend_card
-            game.game_status = 'end'
+            game.game_status = 'end' #game_status를 'end'로 변경
             game.save() #game의 변경된 status 저장
             game.attacker.save() #attacker의 변경된 point 저장
             game.defender.save() #defender의 변경된 point 저장
