@@ -66,11 +66,27 @@ def defend(request, pk):
                 game.tie_flag = 1 #무승부 표시
             else :
                 if game.game_mode == 'big_num' : #큰 수가 이기는 게임이라면
-                    #공격 카드가 큰 수이면 공격자가 이기고, 아니면 방어자가 이긴다
-                    game.victory_user = game.attacker if game.attack_card > game.defend_card else game.defender
+                    if game.attack_card > game.defend_card : #attacker가 이겼을 경우
+                        game.victory_user = game.attacker
+                        game.attacker.point += game.attack_card
+                        game.defender.point -= game.defend_card
+                    else : #defender가 이겼을 경우
+                        game.victory_user = game.defender
+                        game.attacker.point -= game.attack_card
+                        game.defender.point += game.defend_card
                 else : #작은 수가 이기는 게임이라면
-                    #공격 카드가 작은 수이면 공격자가 이기고, 아니면 방어자가 이긴다
-                    game.victory_user = game.attacker if game.attack_card < game.defend_card else game.defender
+                    if game.attack_card < game.defend_card : #attacker가 이겼을 경우
+                        game.victory_user = game.attacker
+                        game.attacker.point += game.attack_card
+                        game.defender.point -= game.defend_card
+                    else : #defender가 이겼을 경우
+                        game.victory_user = game.defender
+                        game.attacker.point -= game.attack_card
+                        game.defender.point += game.defend_card
+            game.game_status = 'end'
+            game.save() #game의 변경된 status 저장
+            game.attacker.save() #attacker의 변경된 point 저장
+            game.defender.save() #defender의 변경된 point 저장
             form.save()
             return redirect('/')
         else :
