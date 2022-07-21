@@ -21,7 +21,7 @@ class LoginView(View):
             
             if user is not None:
                 login(request, user)
-                return render(request, "cardgame/main.html")
+                return redirect("cardgame:main")
 
         context = {
             "form" : form
@@ -38,7 +38,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return render(request, "cardgame/main.html")
+            return redirect("cardgame:main")
 
         return redirect("cardgame:sign_up")
 
@@ -47,7 +47,7 @@ def sign_up(request):
         context = {
             "form" : form
         }
-        return render(request, "cardgame/signup.html", context)
+        return render(request, "cardgame/sign_up.html", context)
 
 def log_out(request):
     logout(request)

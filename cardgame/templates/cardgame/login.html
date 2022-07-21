@@ -1,0 +1,8 @@
+{% extends 'cardgame/main.html' %} {% block content %}
+<form method="POST" action="">
+  {% csrf_token %} {{ form }}
+  <button>로그인</button>
+</form>
+<li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
+
+{% endblock content %}
