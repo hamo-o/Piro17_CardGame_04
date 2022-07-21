@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views import View
 from . import forms
+from .models import User
 from django.contrib.auth import authenticate, login, logout
 
 class LoginView(View):
