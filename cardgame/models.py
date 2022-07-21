@@ -9,7 +9,7 @@ MODE_CHOICE = {('big_num', 'big_num'),('small_num', 'small_num')}
 STATUS_CHOICE = {('proceed', 'proceed'),('end', 'end')}
 class Game(models.Model):
   attacker = models.ForeignKey(User, on_delete=models.CASCADE, related_name="attacker")
-  defenser = models.ForeignKey(User, on_delete=models.CASCADE, related_name="defenser")
+  defender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="defender")
   attack_card = models.IntegerField()
   defense_card = models.IntegerField()
   game_mode = models.CharField(max_length=20, choices=MODE_CHOICE)
