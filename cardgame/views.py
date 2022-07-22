@@ -16,7 +16,7 @@ def main (request):
 
 def game_rank(request):
     if request.user.is_authenticated:
-        users = User.objects.all().order_by('point')
+        users = User.objects.all().order_by('-point')
         
         context = {
             "users" : users
