@@ -4,7 +4,7 @@ from django.views import View
 from . import forms
 from .models import User, Game
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+import random
 
 class LoginView(View):
     def get(self, request):
@@ -110,3 +110,14 @@ def defend(request, pk):
             'game' : game
         }
         return render(request, 'cardgame/defend.html', context=context)
+    
+def game_detail(request, pk) :
+    game = Game.objects.get(pk = pk)
+    request_user = request.user
+    
+    context = {
+        'game' : game,
+        'request_user' : request_user
+    }
+    return render(request, 'cardgame/game_detail.html', context=context)
+
