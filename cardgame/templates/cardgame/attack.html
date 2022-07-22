@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/attack.css' %}" />
     <title>4조</title>
 </head>
 <body>
-    <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
-    {% block content %} {% if user.is_authenticated %}
-    <p>{{user.username}} 님이 로그인 중</p>
-    <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
-    <li><a href="{% url 'cardgame:attack' %}">게임하기</a></li>
-    <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
-    <li><a href="{% url 'cardgame:game_list' %}">전적보기</a></li>
-    {% else %}
-    <script type="text/javascript">
-      alert('먼저 로그인을 해주세요🥺')
-      window.location.href = '{% url 'account_login' %}';
-    </script>
-    {% endif %} {% endblock content %}
+  <nav class="navbar">
+    <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
+    <ul class="navbar-list">
+      <li><a href="">게임하기</a></li>
+      <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
+      <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    {% if user.is_authenticated %}
     <form action="/attack/" method="POST">
         {% csrf_token %}
         <table>
@@ -27,6 +33,19 @@
         </table>
 
         <input type="submit" value="공격하기!" />
-      </form>
-
+    </form>
+  </div>
+    <footer class="footer">
+      <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
+      <div class="footer-content">
+        뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
+      </div>
+    </footer>
+    {% else %}
+    <script type="text/javascript">
+      alert('먼저 로그인을 해주세요🥺')
+      window.location.href = '{% url 'account_login' %}';
+    </script>
+    {% endif %}
+</body>  
 </html>
