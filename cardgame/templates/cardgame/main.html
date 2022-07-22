@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <title>4조</title>
   </head>
   <body>
-    <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
     {% block content %} {% if user.is_authenticated %}
+    <nav class="navbar">
+      <ul class="navbar-list">
+        <li class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></li>
+        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
+        <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+      </ul>
+    </nav>
+    <div>전 세계 피로그래머와 한 판 승부 숫자카드게임</div>
     <p>{{user.username}} 님이 로그인 중</p>
-    <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
-    <li><a href="">게임하기</a></li>
-    <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
-    <li><a href="">전적보기</a></li>
+    <div><a href="">게임하기</a></div>
+    <div><a href="">전적보기</a></div>
     {% else %}
-    <li><a href="{% url 'cardgame:login' %}">로그인</a></li>
-    <li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
+    <nav class="navbar">
+      <ul class="navbar-list">
+        <li><a href="/">PIROGRAM CARDGAME</a></li>
+        <li><a href="{% url 'cardgame:login' %}">로그인</a></li>
+      </ul>
+    </nav>
+    <div>전 세계 피로그래머와 한 판 승부 숫자카드게임</div>
     <li><a href="{% url 'cardgame:login' %}">게임하기</a></li>
-
     {% endif %} {% endblock content %}
   </body>
 </html>
