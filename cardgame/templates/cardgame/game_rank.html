@@ -18,7 +18,7 @@
     <nav class="navbar">
       <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
       <ul class="navbar-list">
-        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:attack' %}">게임하기</a></li>
         <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
         <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
       </ul>
@@ -26,8 +26,10 @@
     <div class="content">
       {% block content %} {% if user.is_authenticated %}
       <div class="content-box">
-        <div class="box-title">PIRO 명예의 전당</div>
-        {% for user in users %} {% if forloop.first %}
+        <div class="emoji">🏆</div>
+        <div class="box-title">✨PIRO 명예의 전당✨</div>
+        
+          {% for user in users %} {% if forloop.first %}
         <div class="first-content">
           <div>{{ forloop.counter }}등</div>
           <div>{{ user.username }}님!</div>
@@ -40,7 +42,9 @@
           <div>총점수 : {{ user.point }}점</div>
         </div>
         {% endif %} {% endfor %}
-        <a id="list_btn" href="{% url 'cardgame:game_list' %}">전적보기</a>
+        
+        
+        <a id="list_btn" class="box-btn" href="{% url 'cardgame:game_list' %}">전적보기</a>
       </div>
     </div>
     <footer class="footer">

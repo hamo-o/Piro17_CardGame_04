@@ -19,7 +19,7 @@
     <nav class="navbar">
       <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
       <ul class="navbar-list">
-        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:attack' %}">게임하기</a></li>
         <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
         <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
       </ul>
@@ -37,20 +37,20 @@
           </div>
           <div class="inform_wrap">
             <div class="inform_div">
-              <a class="inform_btn2" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a>
+              <a class="inform_btn2 box-btn" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a>
             </div>
             <div class="inform_div">
-              <a class="inform_btn2" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+              <a class="inform_btn2 box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
             </div>
           </div>
         </form>
         {% else %}<!--공격자가 상대방이라면-->
         <div class="inform_wrap defend">
           <div class="inform_div">
-            <a class="inform_btn2" href="/defend/{{game.id}}">반격하기</a>
+            <a class="inform_btn2 box-btn" href="/defend/{{game.id}}">반격하기</a>
           </div>
           <div class="inform_div">
-            <a class="inform_btn2" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+            <a class="inform_btn2 box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
           </div>
         </div>
         {% endif %} {% else %}<!--게임 상태가 end라면-->
@@ -65,31 +65,34 @@
         </div>
         {% if game.attack_card == game.defend_card %}<!--무승부라면-->
         <p class="result_3">결과 : 무승부</p>
-        <p >점수 : 변동없음</p>
+        <p class="score">점수 : 변동없음</p>
+        <div class="inform">
+          <a class="inform_btn box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+        </div>
         {% else %}<!--무승부가 아니라면-->
         {% if game.victory_user == request_user%}<!--이긴사람이 자신이라면-->
         <p class="result_3">결과 : 승리</p>
         {% if request_user == game.attacker %}
-        <p>점수 : +{{ game.attack_card }}</p>
+        <p class="score">점수 : + {{ game.attack_card }}</p>
         <div class="inform">
-          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+          <a class="inform_btn box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
         </div>
         {% else %}
-        <p>점수 : +{{ game.defend_card }}</p>
+        <p class="score">점수 : + {{ game.defend_card }}</p>
         <div class="inform">
-          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+          <a class="inform_btn box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
         </div>
         {% endif %} {% else %}<!--이긴사람이 상대방이라면-->
         <p class="result_3">결과 : 패배</p>
         {% if request_user == game.attacker %}
-        <p>점수 : -{{ game.attack_card }}</p>
+        <p class="score">점수 : - {{ game.attack_card }}</p>
         <div class="inform">
-          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+          <a class="inform_btn box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
         </div>
         {% else %}
-        <p>점수 : -{{ game.defend_card }}</p>
+        <p class="score">점수 : - {{ game.defend_card }}</p>
         <div class="inform">
-          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+          <a class="inform_btn box-btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
         </div>
         {% endif %} {% endif %} {% endif %} {% endif %}
       {% else %}
