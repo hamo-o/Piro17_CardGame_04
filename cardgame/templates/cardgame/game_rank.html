@@ -24,6 +24,7 @@
       </ul>
     </nav>
     <div class="content">
+      {% block content %} {% if user.is_authenticated %}
       <div class="content-box">
         <div class="box-title">PIRO 명예의 전당</div>
         {% for user in users %} {% if forloop.first %}
@@ -48,5 +49,11 @@
         뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
       </div>
     </footer>
+    {% else %}
+    <script type="text/javascript">
+      alert('먼저 로그인을 해주세요🥺')
+      window.location.href = '{% url 'account_login' %}';
+    </script>
+    {% endif %} {% endblock content %}
   </body>
 </html>
