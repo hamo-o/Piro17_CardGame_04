@@ -26,13 +26,15 @@
   </nav>
   <div class="content">
     {% if user.is_authenticated %}
-    <form class="content-box" action="/attack/" method="POST">
-        {% csrf_token %}
-        <table>
-          {{form.as_p}}
-        </table>
-        <input class="attack_btn" type="submit" value="공격하기!" />
-    </form>
+    <div class="content-box">
+      <form action="/attack/" method="POST">
+          {% csrf_token %}
+          <table>
+            {{form.as_p}}
+          </table>
+          <input class="attack_btn" type="submit" value="공격하기!" />
+      </form>
+    </div>
   </div>
     <footer class="footer">
       <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>

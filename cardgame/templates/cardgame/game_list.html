@@ -29,11 +29,10 @@
         <div class="player">현재 플레이어 : {{user.username}}</div>
         {% for game in games reversed %}
         <div class="content-box">
-          <div class="versus">{{forloop.revcounter}}   {{game.attacker.username}} VS {{game.defender.username}}</div>
-          <div class="result_detail">
+          <div class="versus"><span>{{forloop.revcounter}}</span>{{game.attacker.username}} VS {{game.defender.username}}</div>
             {% if game in status_proceed %}
               {% if game.attacker.username == current_user.username %}
-                  <div>진행중...<a class="cancel_btn" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></div>
+                  <div class="progress"><span>진행중...</span><a class="cancel_btn" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></div>
               {% elif game.defender.username == current_user.username %}
                   <a class="defend_btn" href="{% url 'cardgame:defend' pk=game.id%}">반격하기</a>
               {% endif %}
@@ -49,7 +48,6 @@
               {% endif %}
               <a class="inform_btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
             {% endif %}
-          </div>
         </div>
         {% endfor %}
         {% else %}

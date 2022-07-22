@@ -26,20 +26,17 @@
       </ul>
     </nav>
     <div class="content">
-      <div class="vs">
-        <p id="defeat-text">세기의 격돌...</p>
-        <p id="attackerVSdefender">{{game.attacker}} VS {{game.defender}}</p>
+      <div class="content-box">
+        <div class="versus">세기의 격돌...<br/>🔥 {{game.attacker}} VS {{game.defender}} 🔥</div>
+        <div>{{game.attacker}}에게 반격하세요!</div>
+        <form class="select" action="/defend/{{game.id}}/" method="POST">
+          {% csrf_token %}
+          <table>
+            {{form.as_p}}
+          </table>
+          <input class="defend_btn" type="submit" value="반격하기!" />
+        </form>
       </div>
-      <div>
-        <p id="defend-text">{{game.attacker}}에게 반격하세요!</p>
-      </div>
-      <form action="/defend/{{game.id}}/" method="POST">
-        {% csrf_token %}
-        <table>
-          {{form.as_p}}
-        </table>
-        <input type="submit" value="반격하기!" />
-      </form>
     </div>
     <footer class="footer">
       <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
