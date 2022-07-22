@@ -1,6 +1,7 @@
 {% load static %}
 {% static 'img/btnG_long.png' as naver_button %}
 {% static 'img/btn_google_signin_normal.png' as google_button %}
+{% static 'img/kakao_login_medium_narrow.png' as kakao_button %}
 
 {% load socialaccount %}
 
@@ -28,6 +29,12 @@
     <div>
       <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
       <img src="{{ google_button }}" height="38" width="141.17">
+    </div>
+
+    {% elif provider.name == "Kakao" %}
+    <div>
+      <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+      <img src="{{ kakao_button }}" height="38" width="141.17">
     </div>
         
 {% else %}

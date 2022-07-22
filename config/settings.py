@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',#소셜account 정보관리
     'allauth.socialaccount.providers.google',#구글 소셜로그인
     'allauth.socialaccount.providers.naver',#네이버 소셜로그인
+    'allauth.socialaccount.providers.kakao',#카카오 소셜로그인
 ]
 
 MIDDLEWARE = [
