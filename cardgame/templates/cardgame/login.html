@@ -6,6 +6,6 @@ providers_media_js %} {% block content %}
 </form>
 <a href="{% provider_login_url 'google' %}">구글 로그인</a><br />
 <a href="{% provider_login_url 'naver' %}">네이버 로그인</a>
-<li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
+<li><a href="{{signup_url}}">회원가입</a></li>
 
 {% endblock content %}
