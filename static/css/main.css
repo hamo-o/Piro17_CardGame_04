@@ -1,17 +1,32 @@
 @import url(reset.css);
+@import url(setting.css);
 
-.navbar {
-  height: 3rem;
-  background: black;
-  position: sticky;
+.content-title {
+  margin: 1rem;
+
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  line-height: 2.5rem;
 }
 
-.navbar-title {
+.content-login {
+  padding: 0.5rem;
+
+  color: rgb(184, 184, 184);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.content-game_btn,
+.content-list_btn {
+  margin: 0.3rem;
+  padding: 0.5rem 1rem 0.5rem;
+
+  border: 0.1rem solid chartreuse;
+  border-radius: 0.3rem;
+
   color: chartreuse;
-}
-
-.navbar-list {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-weight: bold;
 }

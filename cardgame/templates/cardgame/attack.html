@@ -7,26 +7,18 @@
     <title>4조</title>
 </head>
 <body>
-    <!-- {% if user.is_authenticated %}
-    ~넣으셔야 하는 코드
-    {% else %}
-    <script type="text/javascript">
-      alert('먼저 로그인을 해주세요🥺')
-      window.location.href = '{% url 'cardgame:login' %}';
-    </script>
-    {% endif %} -->
-
     <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
     {% block content %} {% if user.is_authenticated %}
     <p>{{user.username}} 님이 로그인 중</p>
-    <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
-    <li><a href="">게임하기</a></li>
-    <li><a href="">랭킹보기</a></li>
-    <li><a href="">전적보기</a></li>
+    <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
+    <li><a href="{% url 'cardgame:attack' %}">게임하기</a></li>
+    <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
+    <li><a href="{% url 'cardgame:game_list' %}">전적보기</a></li>
     {% else %}
-    <li><a href="{% url 'cardgame:login' %}">로그인</a></li>
-    <li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
-    <li><a href="{% url 'cardgame:login' %}">게임하기</a></li>
+    <script type="text/javascript">
+      alert('먼저 로그인을 해주세요🥺')
+      window.location.href = '{% url 'account_login' %}';
+    </script>
     {% endif %} {% endblock content %}
     <form action="/attack/" method="POST">
         {% csrf_token %}
