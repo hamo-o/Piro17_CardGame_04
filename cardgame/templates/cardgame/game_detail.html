@@ -36,7 +36,7 @@
       {% endif %}
       <p>{{game.attacker}}님이 낸 카드 : {{game.attack_card}}</p>
       <p>{{game.defender}}(나)님이 낸 카드 : {{game.defend_card}}</p>
-      {% if game.attack_card==game.defend_card %}<!--무승부라면-->
+      {% if game.attack_card == game.defend_card %}<!--무승부라면-->
       <p>결과 : 무승부</p>
       <p>점수 : 변동없음</p>
       {% else %}<!--무승부가 아니라면-->
