@@ -7,35 +7,38 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="content">
+  <div class="title">{% trans "Sign In" %}</div>
 
-{% get_providers as socialaccount_providers %}
+  {% get_providers as socialaccount_providers %}
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
+  <form class="login" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
 
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button class="primaryAction login_btn" type="submit">{% trans "Sign In" %}</button>
+  </form>
+
+  {% if socialaccount_providers %}
+  <div class="social">
+    <div class="social-title">{% blocktrans with site.name as site_name %}회원 가입 또는 소셜 로그인{% endblocktrans %}</div>
+    <div class="socialaccount_ballot">
+      <ul class="socialaccount_providers">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </ul>
+    </div>
+  </div>
+
+  {% include "socialaccount/snippets/login_extra.html" %}
+  <div class="signup_btn"><a href="{{ signup_url }}">sign up</a></div>
+
+  {% else %}
+  <p>{% blocktrans %}If you have not created an account yet, then please
+  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
   {% endif %}
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}회원 가입 또는 소셜 로그인{% endblocktrans %}</p>
 
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
 </div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-<a href="{{ signup_url }}">sign up</a>
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
 {% endblock %}
