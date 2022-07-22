@@ -24,6 +24,7 @@
       </ul>
     </nav>
     <div class="content">
+      <div class="title">게임 전적</div>
       {% block content %} {% if user.is_authenticated %}
         <div class="player">현재 플레이어 : {{user.username}}</div>
         {% for game in games reversed %}

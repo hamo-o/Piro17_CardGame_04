@@ -26,13 +26,12 @@
   </nav>
   <div class="content">
     {% if user.is_authenticated %}
-    <form action="/attack/" method="POST">
+    <form class="content-box" action="/attack/" method="POST">
         {% csrf_token %}
         <table>
           {{form.as_p}}
         </table>
-
-        <input type="submit" value="공격하기!" />
+        <input class="attack_btn" type="submit" value="공격하기!" />
     </form>
   </div>
     <footer class="footer">
