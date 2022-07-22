@@ -1,8 +1,11 @@
-{% extends 'cardgame/main.html' %} {% block content %}
+{% extends 'cardgame/main.html' %} {% load static %} {% load socialaccount %} {%
+providers_media_js %} {% block content %}
 <form method="POST" action="">
   {% csrf_token %} {{ form }}
   <button>로그인</button>
 </form>
+<a href="{% provider_login_url 'google' %}">구글 로그인</a><br />
+<a href="{% provider_login_url 'naver' %}">네이버 로그인</a>
 <li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
 
 {% endblock content %}
