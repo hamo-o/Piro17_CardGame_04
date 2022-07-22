@@ -1,0 +1,17 @@
+@import url(reset.css);
+
+.navbar {
+  height: 3rem;
+  background: black;
+  position: sticky;
+}
+
+.navbar-title {
+  color: chartreuse;
+}
+
+.navbar-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

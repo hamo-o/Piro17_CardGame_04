@@ -55,6 +55,16 @@ def log_out(request):
     logout(request)
     return redirect("cardgame:main")
 
+def game_rank(request):
+    if request.user.is_authenticated:
+        users = User.objects.all().order_by('point')
+        
+        context = {
+            "users" : users
+        }
+        return render(request, 'cardgame/game_rank.html', context=context)
+    else:
+        return redirect("cardgame:main")
 def defend(request, pk):
     game = Game.objects.get(pk = pk) 
     

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4조</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">PIROGRAM CARDGAME(홈으로 이동)</a>
+      <li><a href="">게임하기</a></li>
+      <li><a href="">랭킹보기</a></li>
+      <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+    </nav>
+    <div>
+      <div>PIRO 명예의 전당</div>
+      {% for user in users %}
+      <div>{{ user.username }}님!</div>
+      <div>총점수 : {{ user.point }}점</div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
