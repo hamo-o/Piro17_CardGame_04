@@ -43,7 +43,7 @@ def sign_up(request):
             login(request, user)
             return redirect("cardgame:main")
 
-        return redirect("cardgame:sign_up")
+        return render(request, "cardgame/sign_up.html", {'form':form})
 
     else:
         form = forms.SignupForm()
