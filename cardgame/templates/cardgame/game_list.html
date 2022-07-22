@@ -1,45 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/game_list.css' %}" />
     <title>4조</title>
   </head>
   <body>
-    <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
-    {% block content %} {% if user.is_authenticated %}
-    <p>현재 플레이어 : {{user.username}}</p>
-    {% for game in games reversed %}
-    <div>{{game.attacker.username}} VS {{game.defender.username}}</div>
-    <div>
-      {% if game in status_proceed %} {% if game.attacker.username ==
-      current_user.username %}
-      <p>
-        진행중...<a href="{% url 'cardgame:game_delete' pk=game.id%}"
-          >게임 취소</a
-        >
-      </p>
-      {% elif game.defender.username == current_user.username %}
-      <a href="{% url 'cardgame:defend' pk=game.id%}">반격하기</a>
-      {% endif %}
-      <a href="">게임 정보</a>
-      {% endif %} {% if game in stauts_end %} {% if game.attack_card ==
-      game.defend_card %}
-      <p>무승부</p>
-      {% elif game.victory_user.username == current_user.username %}
-      <p>결과 : 승리</p>
-      {% elif game.victory_user.username != current_user.username %}
-      <p>결과 : 패배</p>
-      {% endif %}
-      <a href="">게임 정보</a>
-      {% endif %}
+    <nav class="navbar">
+      <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
+      <ul class="navbar-list">
+        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
+        <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      {% block content %} {% if user.is_authenticated %}
+        <div class="player">현재 플레이어 : {{user.username}}</div>
+        {% for game in games reversed %}
+        <div class="content-box">
+          <div class="versus">{{game.attacker.username}} VS {{game.defender.username}}</div>
+          <div class="result_detail">
+            {% if game in status_proceed %}
+              {% if game.attacker.username == current_user.username %}
+                  <div>진행중...<a class="cancel_btn" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></div>
+              {% elif game.defender.username == current_user.username %}
+                  <a class="defend_btn" href="{% url 'cardgame:defend' pk=game.id%}">반격하기</a>
+              {% endif %}
+              <a class="inform_btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
+            {% endif %}
+            {% if game in stauts_end %}
+              {% if game.attack_card == game.defend_card %}
+                <div>무승부</div>
+              {% elif game.victory_user.username == current_user.username %}
+                  <div>결과 : 승리</div>
+              {% elif game.victory_user.username != current_user.username %}
+                  <div>결과 : 패배</div>
+              {% endif %}
+              <a class="inform_btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <script type="text/javascript">
+          alert('먼저 로그인을 해주세요🥺')
+          window.location.href = "{% url 'cardgame:login' %}";
+        </script>
+        {% endif %} {% endblock content %}
     </div>
-    {% endfor %} {% else %}
-    <script type="text/javascript">
-      alert("먼저 로그인을 해주세요🥺");
-      window.location.href = "{% url 'cardgame:login' %}";
-    </script>
-    {% endif %} {% endblock content %}
+      <footer class="footer">
+        <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
+        <div class="footer-content">
+          뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
+        </div>
+      </footer>
   </body>
 </html>
