@@ -36,7 +36,10 @@
         {% for game in games reversed %}
         <div class="content-box">
           <div style="display:flex">
-            <div class="versus">{{game.attacker.username}}</div>
+            <div class="versus">
+            <span>{{forloop.revcounter}}</span>
+            {{game.attacker.username}}
+            </div>
             <div class="vs">　VS　</div>
             <div class="versus">{{game.defender.username}}</div>
           </div>
@@ -59,7 +62,6 @@
               {% endif %}
               <a class="inform_btn box-btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
             {% endif %}
-          </div>
         </div>
         {% endfor %}
         {% else %}

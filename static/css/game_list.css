@@ -46,6 +46,18 @@
   font-weight: bold;
 }
 
+.versus {
+    width: 10rem;
+}
+
+.versus span {
+
+    padding-right: 1rem;
+
+    color: chartreuse;
+    font-weight: bold;
+}
+
 .result_detail {
   width: 55%;
   display: flex;
