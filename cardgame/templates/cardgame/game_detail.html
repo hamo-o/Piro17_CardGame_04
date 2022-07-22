@@ -19,7 +19,7 @@
     <nav class="navbar">
       <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
       <ul class="navbar-list">
-        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:attack' %}">게임하기</a></li>
         <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
         <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
       </ul>
