@@ -84,7 +84,13 @@ def MakeRandomCard():
     return choice_list
 
 def attack(request):
+    random_choices = MakeRandomCard() #랜덤 숫자 목록 생성
+    
     games = Game.objects.all()
+    
+    #AttackForm의 choices에 랜덤으로 생성된 숫자 목록을 할당한다
+    form = forms.AttackForm()
+    form.fields['attack_card'] = f.ChoiceField(choices=random_choices, label="내가 고른 카드")
 
     if request.method == 'POST':
         form = forms.AttackForm(request.POST)
@@ -94,13 +100,11 @@ def attack(request):
             game.game_mode=random.choice(['big_num', 'small_num'])
             game.game_status='proceed'
             game.save()
-            return redirect('game_list/')
+            return redirect('/game_list/')
         else :
-            return redirect('game_list/')
+            return redirect('/game_list/')
     else :
-        form = forms.AttackForm()
         user = get_user_model()
-        form = forms.AttackForm()
         form.fields['defender'].queryset = user.objects.all().exclude(id=request.user.id)
         context={
             'form':form,
