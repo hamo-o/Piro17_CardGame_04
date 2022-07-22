@@ -39,7 +39,7 @@
           <div>총점수 : {{ user.point }}점</div>
         </div>
         {% endif %} {% endfor %}
-        <a id="list_btn" href="">전적보기</a>
+        <a id="list_btn" href="{% url 'cardgame:game_list' %}">전적보기</a>
       </div>
     </div>
     <footer class="footer">
