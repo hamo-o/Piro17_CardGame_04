@@ -1,21 +1,29 @@
-{% extends "socialaccount/base.html" %}
+{% extends "account/base.html" %}
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
+<div class="content">
 {% if process == "connect" %}
 <h1>{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h1>
 
 <p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
 {% else %}
+<div class="title">
 <h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+</div>
 
-<p>{% blocktrans with provider.name as provider %}{{ provider }}계정을 이용해 로그인을 진행합니다.{% endblocktrans %}</p>
+<div class="social">
+  <p>{% blocktrans with provider.name as provider %}{{ provider }}계정을 이용해 로그인을 진행합니다.{% endblocktrans %}</p>
+</div>
 {% endif %}
 
-<form method="post">
+<form class="login" method="post">
   {% csrf_token %}
-  <button type="submit">{% trans "Continue" %}</button>
+  <button type="submit" style="color:chartreuse">{% trans "Continue" %}</button>
 </form>
+<div class="signup_btn"><a href="{% url 'cardgame:main' %}">메인으로</a></div>
+
+</div>
 {% endblock %}
