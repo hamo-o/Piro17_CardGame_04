@@ -15,7 +15,7 @@
         <li class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></li>
         <li><a href="">게임하기</a></li>
         <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
-        <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+        <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
       </ul>
     </nav>
     <div>전 세계 피로그래머와 한 판 승부 숫자카드게임</div>
@@ -28,11 +28,11 @@
     <nav class="navbar">
       <ul class="navbar-list">
         <li><a href="/">PIROGRAM CARDGAME</a></li>
-        <li><a href="{% url 'cardgame:login' %}">로그인</a></li>
+        <li><a href="{% url 'account_login' %}">로그인</a></li>
       </ul>
     </nav>
     <div>전 세계 피로그래머와 한 판 승부 숫자카드게임</div>
-    <li><a href="{% url 'cardgame:login' %}">게임하기</a></li>
+    <li><a href="{% url 'account_signup' %}">게임하기</a></li>
     {% endif %} {% endblock content %}
   </body>
 </html>
