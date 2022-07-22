@@ -1,5 +1,30 @@
 @import url(reset.css);
 
+@font-face {
+    font-family: "DOSGothic";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSGothic.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body, button {
+    font-family: "DOSGothic";
+    font-weight: bold;
+  }
+
+  .continue{
+    color:chartreuse;
+  }
+
+
+
+  .box-btn{
+    transition: color 0.5s;
+  }
+  
+
+
 .content {
     height: 100vh;
 
@@ -20,14 +45,14 @@
 
 .text{
     padding: 0.5rem;
-
+    margin-bottom: 1rem;
     color: white;
 }
 
 .login,
 .signup {
-    margin: 2rem;
-    padding: 2rem;
+    margin-top: 2rem;
+    padding: 0.4rem 0.8rem 0.4rem;
 
     display: flex;
     flex-direction: column;
@@ -122,7 +147,7 @@ input[id="id_remember"]:checked{
 }
 
 .logout_btn {
-    margin: 1.5rem;
+    margin: 0.5rem;
     padding: 0.4rem 0.8rem 0.4rem;
   
     border: 0.1rem solid chartreuse;
@@ -182,3 +207,16 @@ input[id="id_remember"]:checked{
     font-size: 0.8rem;
     font-weight: bold;
 }
+
+
+.box-btn:hover{
+    cursor: pointer;
+    border: 0.1rem solid chartreuse;
+    border-radius: 0.3rem;
+    background: chartreuse;
+    color: black!important;
+  }
+
+  .continue:hover{
+    color: black!important;;
+  }

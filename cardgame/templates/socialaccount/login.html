@@ -11,7 +11,7 @@
 <p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
 {% else %}
 <div class="title">
-<h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1>
+<h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h1></br>
 </div>
 
 <div class="social">
@@ -19,11 +19,11 @@
 </div>
 {% endif %}
 
-<form class="login" method="post">
+<form class="login box-btn" method="post">
   {% csrf_token %}
-  <button type="submit" style="color:chartreuse">{% trans "Continue" %}</button>
+  <button class="continue" type="submit">{% trans "계속하기" %}</button>
 </form>
-<div class="signup_btn"><a href="{% url 'cardgame:main' %}">메인으로</a></div>
+<div class="signup_btn box-btn"><a href="{% url 'cardgame:main' %}">메인으로</a></div>
 
 </div>
 {% endblock %}
