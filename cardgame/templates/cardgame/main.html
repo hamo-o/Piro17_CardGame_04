@@ -32,7 +32,9 @@
       </div>
       <div class="content-login">{{user.username}} 님이 로그인 중</div>
       <div class="content-game_btn"><a href="">게임하기</a></div>
-      <div class="content-list_btn"><a href="">전적보기</a></div>
+      <div class="content-list_btn">
+        <a href="{% url 'cardgame:game_list' %}">전적보기</a>
+      </div>
     </div>
     {% else %}
     <nav class="navbar">
