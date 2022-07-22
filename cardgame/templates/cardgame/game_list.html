@@ -10,32 +10,28 @@
     <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
     {% block content %} {% if user.is_authenticated %}
     <p>현재 플레이어 : {{user.username}}</p>
-      {% for game in proceed_games %}
+      {% for game in games reversed %}
       <div>{{game.attacker.username}} VS {{game.defender.username}}</div>
       <div>
-        {% if game.attack_card == game.defend_card %}
-            <p>무승부</p>
-        {% elif game.attacker.username == current_user.username %}
-            <p>진행중...<a href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></p>
-        {% elif game.defender.username == current_user.username %}
-            <a href="">반격하기</a>
+        {% if game in status_proceed %}
+          {% if game.attacker.username == current_user.username %}
+              <p>진행중...<a href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></p>
+          {% elif game.defender.username == current_user.username %}
+              <a href="{% url 'cardgame:defend' pk=game.id%}">반격하기</a>
+          {% endif %}
+          <a href="">게임 정보</a>
         {% endif %}
-        <a href="">게임 정보</a>
-      </div>
-      {% endfor %}
-
-      {% for game in end_games %}
-      <div>{{game.attacker.username}} VS {{game.defender.username}}</div>
-      <div>
-        {% if game.attack_card == game.defend_card %}
+        {% if game in stauts_end %}
+          {% if game.attack_card == game.defend_card %}
             <p>무승부</p>
-        {% elif game.victory_user.username == current_user.username %}
-            <p>결과 : 승리</p>
-        {% elif game.victory_user.username != current_user.username %}
-            <p>결과 : 패배</p>
+          {% elif game.victory_user.username == current_user.username %}
+              <p>결과 : 승리</p>
+          {% elif game.victory_user.username != current_user.username %}
+              <p>결과 : 패배</p>
+          {% endif %}
+          <a href="">게임 정보</a>
         {% endif %}
-        <a href="">게임 정보</a>
-      </div>
+        </div>
       {% endfor %}
       {% else %}
       <script type="text/javascript">

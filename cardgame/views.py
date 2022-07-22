@@ -124,21 +124,19 @@ def game_detail(request, pk) :
 def game_list(request):
     game = Game.objects.all() 
     users = User.objects.all()
-    end_attack_game = game.filter(
-        attacker=request.user, game_status='end') #attacker의 게임이 끝났을 때
-    proceed_attack_game = game.filter(
-        attacker=request.user, game_status='proceed') #attacker의 게임이 진행 중일 때
-    end_defend_game = game.filter(
-        defender = request.user, game_status='end') #defender의 게임이 끝났을 때
-    proceed_defend_game = game.filter(
-        defender = request.user, game_status='proceed') #defender의 게임이 진행 중일 때
+    attack_game = game.filter(
+        attacker=request.user) #attacker의 게임이 끝났을 때
+    defend_game = game.filter(
+        defender = request.user) #defender의 게임이 끝났을 때
 
-    end_games = end_attack_game.union(end_defend_game)
-    proceed_games = proceed_attack_game.union(proceed_defend_game)
-
+    games = attack_game.union(defend_game)
+    status_proceed = game.filter(game_status = 'proceed')
+    print(status_proceed)
+    stauts_end = game.filter(game_status = 'end')
     context = {
-        'end_games': end_games,
-        'proceed_games': proceed_games,
+        'status_proceed' : status_proceed,
+        'stauts_end' : stauts_end,
+        'games' : games,
         'current_user': request.user,
         'users':users
     }
