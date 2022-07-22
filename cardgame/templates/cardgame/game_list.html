@@ -24,7 +24,7 @@
       </ul>
     </nav>
     <div class="content">
-      {% block content %} {% if user.is_authenticated %}
+      {% if user.is_authenticated %}
         <div class="title">
           <span>게임 전적</span>
           <p>
@@ -64,12 +64,7 @@
             {% endif %}
         </div>
         {% endfor %}
-        {% else %}
-        <script type="text/javascript">
-          alert('먼저 로그인을 해주세요🥺')
-          window.location.href = '{% url 'account_login' %}';
-        </script>
-        {% endif %} {% endblock content %}
+      </div>
     </div>
       <footer class="footer">
         <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
@@ -77,5 +72,11 @@
           뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
         </div>
       </footer>
+      {% else %}
+        <script type="text/javascript">
+          alert('먼저 로그인을 해주세요🥺')
+          window.location.href = '{% url 'account_login' %}';
+        </script>
+        {% endif %}
   </body>
 </html>
