@@ -15,4 +15,3 @@ class Game(models.Model):
   game_mode = models.CharField(max_length=20, choices=MODE_CHOICE)
   game_status = models.CharField(max_length=20, choices=STATUS_CHOICE)
   victory_user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
-  tie_flag = models.IntegerField(default=0)
