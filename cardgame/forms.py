@@ -29,9 +29,9 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "password1", "password2"]
-        
+
 def MakeRandomCard():
-    choice_list=[]
+    choice_list=[('','----')]
     num_list = random.sample([1,2,3,4,5,6,7,8,9,10], 5)
     for num in num_list:
         temp = []

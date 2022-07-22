@@ -4,3 +4,7 @@ from . import models
 @admin.register(models.User)
 class CustomUserAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(models.Game)
+class GameAdmin(admin.ModelAdmin):
+    pass

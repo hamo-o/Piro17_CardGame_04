@@ -13,18 +13,16 @@
     <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
     <li><a href="">게임하기</a></li>
     <li><a href="">랭킹보기</a></li>
-    <li><a href="">전적보기</a></li>
-    {% else %}
-    <li><a href="{% url 'cardgame:login' %}">로그인</a></li>
-    <li><a href="{% url 'cardgame:sign_up' %}">회원가입</a></li>
-    <li><a href="{% url 'cardgame:login' %}">게임하기</a></li>
     {% endif %} {% endblock content %}
-    <form action="/defend" method="POST">
+    <div>
+      <p>{{game.attacker}}에게 반격하세요!</p>
+    </div>
+    <form action="/defend/{{game.id}}/" method="POST">
       {% csrf_token %}
       <table>
-        {{form}}
+        {{form.as_p}}
       </table>
-      <input type="submit" value="제출" />
+      <input type="submit" value="반격하기!" />
     </form>
   </body>
 </html>
