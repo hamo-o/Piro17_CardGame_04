@@ -3,11 +3,11 @@
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
-
 {% block content %}
 <div class="content">
-  <div class="title">{% trans "Sign Up" %}</div>
-  <div class="text">{% blocktrans %}Already have an account? Then please <a class="login_text" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</div>
+
+  <div class="title">{% trans "Sign Up" %}</div></br>
+  <div class="text">이미 계정을 가지고 계시다면 <a class="login_text" href="{{ login_url }}">로그인</a>을 해주세요!</div>
 
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
@@ -15,8 +15,10 @@
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-    <button class="signup_btn" type="submit">{% trans "Sign Up" %}</button>
+    <button class="signup_btn box-btn" type="submit">{% trans "Sign Up" %}</button>
   </form>
+  <div class="signup_btn box-btn"><a href="{% url 'cardgame:main' %}">메인으로</a></div>
+
 </div>
 
-{% endblock %}
+ {% endblock %}

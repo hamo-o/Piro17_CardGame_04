@@ -1,3 +1,7 @@
+{% load static %}
+{% static 'img/btnG_long.png' as naver_button %}
+{% static 'img/btn_google_signin_normal.png' as google_button %}
+
 {% load socialaccount %}
 
 {% get_providers as socialaccount_providers %}
@@ -13,8 +17,23 @@
 </li>
 {% endfor %}
 {% endif %}
+    <!--제공자에 따라 만들어짐.-->
+    {% if provider.name == "Naver" %}
+    <div>
+      <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+      <img src="{{ naver_button }}" height="34" width="141.17">
+    </div>
+    
+    {% elif provider.name == "Google" %}
+    <div>
+      <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+      <img src="{{ google_button }}" height="38" width="141.17">
+    </div>
+        
+{% else %}
 <li>
   <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
 </li>
+{% endif %}
 {% endfor %}

@@ -45,6 +45,7 @@ def attack(request):
     #AttackForm의 choices에 랜덤으로 생성된 숫자 목록을 할당한다
     form = forms.AttackForm()
     form.fields['attack_card'] = f.ChoiceField(choices=random_choices, label="내가 고른 카드")
+    form.fields['defender'].label = "공격할 상대:"
 
     if request.method == 'POST':
         form = forms.AttackForm(request.POST)

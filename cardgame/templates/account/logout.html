@@ -14,7 +14,12 @@
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
       {% endif %}
-      <button class="logout_btn" type="submit">{% trans 'Sign Out' %}</button>
+      <button class="logout_btn box-btn" type="submit">{% trans 'Sign Out' %}</button>
+    </form>
+    
+    <form method="post" action="{% url 'cardgame:main' %}">
+      {% csrf_token %}
+      <button class="logout_btn box-btn" type="submit">메인으로</button>
     </form>
   </div>
 

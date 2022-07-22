@@ -24,29 +24,43 @@
       </ul>
     </nav>
     <div class="content">
-      <div class="title">게임 전적</div>
       {% block content %} {% if user.is_authenticated %}
-        <div class="player">현재 플레이어 : {{user.username}}</div>
+        <div class="title">
+          <span>게임 전적</span>
+          <p>
+            현재 플레이어의 게임 전적을 보여주는 페이지입니다. 저희 4조 정말 잘하지 않았나요?<br>
+            진행 중인 게임은 취소할 수 있어요! 물론 자신이 공격한 게임에만 해당되겠죠?
+          </p>
+        </div>
+        <div class="player">😎 현재 플레이어 : {{user.username}}</div>
         {% for game in games reversed %}
         <div class="content-box">
-          <div class="versus"><span>{{forloop.revcounter}}</span>{{game.attacker.username}} VS {{game.defender.username}}</div>
+          <div style="display:flex">
+            <div class="versus">
+            <span>{{forloop.revcounter}}</span>
+            {{game.attacker.username}}
+            </div>
+            <div class="vs">　VS　</div>
+            <div class="versus">{{game.defender.username}}</div>
+          </div>
+          <div class="result_detail">
             {% if game in status_proceed %}
               {% if game.attacker.username == current_user.username %}
-                  <div class="progress"><span>진행중...</span><a class="cancel_btn" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></div>
+                  <div>진행중...<a class="cancel_btn box-btn" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a></div>
               {% elif game.defender.username == current_user.username %}
-                  <a class="defend_btn" href="{% url 'cardgame:defend' pk=game.id%}">반격하기</a>
+                  <a class="defend_btn box-btn" href="{% url 'cardgame:defend' pk=game.id%}">반격하기</a>
               {% endif %}
-              <a class="inform_btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
+              <a class="inform_btn box-btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
             {% endif %}
             {% if game in stauts_end %}
               {% if game.attack_card == game.defend_card %}
-                <div>무승부</div>
+                <div>결과 : 무승부👊</div>
               {% elif game.victory_user.username == current_user.username %}
-                  <div>결과 : 승리</div>
+                  <div>결과 : 승리👍</div>
               {% elif game.victory_user.username != current_user.username %}
-                  <div>결과 : 패배</div>
+                  <div>결과 : 패배👎</div>
               {% endif %}
-              <a class="inform_btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
+              <a class="inform_btn box-btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
             {% endif %}
         </div>
         {% endfor %}
