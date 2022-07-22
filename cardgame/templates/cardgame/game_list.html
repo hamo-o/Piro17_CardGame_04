@@ -20,7 +20,7 @@
       <ul class="navbar-list">
         <li><a href="">게임하기</a></li>
         <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
-        <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+        <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
       </ul>
     </nav>
     <div class="content">
@@ -54,7 +54,7 @@
         {% else %}
         <script type="text/javascript">
           alert('먼저 로그인을 해주세요🥺')
-          window.location.href = "{% url 'cardgame:login' %}";
+          window.location.href = '{% url 'account_login' %}';
         </script>
         {% endif %} {% endblock content %}
     </div>
