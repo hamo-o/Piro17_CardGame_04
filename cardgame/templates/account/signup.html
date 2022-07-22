@@ -3,9 +3,27 @@
 {% load i18n %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
-
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<div class="content">
+  <div class="title"><h1>{% trans "Sign Up" %}</h1></div>
+  <div class="signup_content">
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+  </div>
+
+  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button type="submit">{% trans "Sign Up" %}</button>
+  </form>
+</div>
+
+
+{% endblock %}
+{% comment %} 
+
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
@@ -18,4 +36,4 @@
   <button type="submit">{% trans "Sign Up" %}</button>
 </form>
 
-{% endblock %}
+ {% endcomment %}
