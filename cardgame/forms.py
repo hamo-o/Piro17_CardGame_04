@@ -29,9 +29,8 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "password1", "password2"]
-        
+
 def MakeRandomCard():
-    choice_list=[]
     choice_list=[('','----')]
     num_list = random.sample([1,2,3,4,5,6,7,8,9,10], 5)
     for num in num_list:
@@ -46,12 +45,10 @@ def MakeRandomCard():
 class AttackForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AttackForm, self).__init__(*args, **kwargs)
-        self.fields['attack_card'].required = True
         self.fields['attack_card'] = forms.ChoiceField(choices=MakeRandomCard(), label="내가 고른 카드")
     class Meta:
         model = Game
-        fields = ["attack_card", "defender"]
-        
+        fields = ['attack_card', 'defender']
 
 
 
@@ -62,4 +59,4 @@ class DefendForm(forms.ModelForm):
         self.fields['defend_card'] = forms.ChoiceField(choices=MakeRandomCard(), label="내가 고른 카드")
     class Meta:
         model = Game
-        fields = ["defend_card"]
+        fields = ['defend_card']
