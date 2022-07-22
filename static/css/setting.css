@@ -6,7 +6,7 @@
   font-style: normal;
 }
 
-body {
+body, input {
   font-family: "DOSGothic";
 }
 
