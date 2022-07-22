@@ -31,14 +31,9 @@ class SignupForm(UserCreationForm):
         fields = ["username", "password1", "password2"]
 
 class AttackForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(AttackForm, self).__init__(*args, **kwargs)
-        self.fields['attack_card'] = forms.ChoiceField(choices=MakeRandomCard(), label="내가 고른 카드")
     class Meta:
         model = Game
         fields = ['attack_card', 'defender']
-
-
 
 class DefendForm(forms.ModelForm):
     class Meta:
