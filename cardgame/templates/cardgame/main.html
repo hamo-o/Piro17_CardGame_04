@@ -5,34 +5,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     <title>4조</title>
   </head>
   <body>
     {% block content %} {% if user.is_authenticated %}
     <nav class="navbar">
+      <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
       <ul class="navbar-list">
-        <li class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></li>
         <li><a href="">게임하기</a></li>
         <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
         <li><a href="{% url 'account_logout' %}">로그아웃</a></li>
       </ul>
     </nav>
-    <div>전 세계 피로그래머와 한 판 승부 숫자카드게임</div>
-
-    <p>{{user.username}} 님이 로그인 중</p>
-
-    <div><a href="">게임하기</a></div>
-    <div><a href="{% url 'cardgame:game_list' %}">전적보기</a></div>
+    <div class="content">
+      <div class="content-title">
+        전 세계 피로그래머와 <br />
+        한 판 승부 숫자카드게임
+      </div>
+      <div class="content-login">{{user.username}} 님이 로그인 중</div>
+      <div class="content-game_btn"><a href="">게임하기</a></div>
+      <div class="content-list_btn">
+        <a href="{% url 'cardgame:game_list' %}">전적보기</a>
+      </div>
+    </div>
     {% else %}
     <nav class="navbar">
+      <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
       <ul class="navbar-list">
-        <li><a href="/">PIROGRAM CARDGAME</a></li>
         <li><a href="{% url 'account_login' %}">로그인</a></li>
       </ul>
     </nav>
-    <div>전 세계 피로그래머와 한 판 승부 숫자카드게임</div>
-    <li><a href="{% url 'account_signup' %}">게임하기</a></li>
+    <div class="content">
+      <div class="content-title">
+        전 세계 피로그래머와 <br />
+        한 판 승부 숫자카드게임
+      </div>
+      <div class="content-game_btn">
+        <a href="{% url 'account_signup' %}">게임하기</a>
+      </div>
+    </div>
     {% endif %} {% endblock content %}
+
+    <footer class="footer">
+      <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
+      <div class="footer-content">
+        뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
+      </div>
+    </footer>
   </body>
 </html>
