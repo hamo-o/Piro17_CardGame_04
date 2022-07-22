@@ -25,46 +25,80 @@
       </ul>
     </nav>
     <div class="content">
-        <p>{{game.id}}번째 대결 - {{game.attacker}} VS {{game.defender}}</p>
+      <div class="div_cotent">
+        <p class="title">🔥 [{{game.id}}번째] {{game.attacker}} VS {{game.defender}} 🔥</p>
         {% if game.game_status == 'proceed' %}<!--게임 상태가 proceed라면-->
         {% if game.attacker == request_user %}<!--공격자가 자신이라면-->
         <form action="/game_delete/{{game.id}}" method="post">
           {% csrf_token%}
-          <button class="btn">게임 취소</button>
+          <div class="proceed">
+            <p>...진행중...</p>
+            <p>내 카드 : {{game.attack_card}}</p>
+          </div>
+          <div class="inform_wrap">
+            <div class="inform_div">
+              <a class="inform_btn2" href="{% url 'cardgame:game_delete' pk=game.id%}">게임 취소</a>
+            </div>
+            <div class="inform_div">
+              <a class="inform_btn2" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+            </div>
+          </div>
         </form>
         {% else %}<!--공격자가 상대방이라면-->
-        <a href="/defend/{{game.id}}">반격하기</a>
+        <div class="inform_wrap defend">
+          <div class="inform_div">
+            <a class="inform_btn2" href="/defend/{{game.id}}">반격하기</a>
+          </div>
+          <div class="inform_div">
+            <a class="inform_btn2" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+          </div>
+        </div>
         {% endif %} {% else %}<!--게임 상태가 end라면-->
         {% if game.game_mode == 'big_num' %}
-        <p>숫자가 더 큰 사람이 대결에서 이깁니다.</p>
+        <p class="result_1">숫자가 더 큰 사람이 대결에서 이깁니다.</p>
         {% else %}
-        <p>숫자가 더 작은 사람이 대결에서 이깁니다.</p>
+        <p class="result_1">숫자가 더 작은 사람이 대결에서 이깁니다.</p>
         {% endif %}
-        <p>{{game.attacker}}님이 낸 카드 : {{game.attack_card}}</p>
-        <p>{{game.defender}}(나)님이 낸 카드 : {{game.defend_card}}</p>
+        <div class="result_2">
+          <p>{{game.attacker}}의 카드 : {{game.attack_card}}</p>
+          <p>{{game.defender}}(나)의 카드 : {{game.defend_card}}</p>
+        </div>
         {% if game.attack_card == game.defend_card %}<!--무승부라면-->
-        <p>결과 : 무승부</p>
-        <p>점수 : 변동없음</p>
+        <p class="result_3">결과 : 무승부</p>
+        <p >점수 : 변동없음</p>
         {% else %}<!--무승부가 아니라면-->
         {% if game.victory_user == request_user%}<!--이긴사람이 자신이라면-->
-        <p>결과 : 승리</p>
+        <p class="result_3">결과 : 승리</p>
         {% if request_user == game.attacker %}
         <p>점수 : +{{ game.attack_card }}</p>
+        <div class="inform">
+          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+        </div>
         {% else %}
         <p>점수 : +{{ game.defend_card }}</p>
+        <div class="inform">
+          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+        </div>
         {% endif %} {% else %}<!--이긴사람이 상대방이라면-->
-        <p>결과 : 패배</p>
+        <p class="result_3">결과 : 패배</p>
         {% if request_user == game.attacker %}
         <p>점수 : -{{ game.attack_card }}</p>
+        <div class="inform">
+          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+        </div>
         {% else %}
         <p>점수 : -{{ game.defend_card }}</p>
+        <div class="inform">
+          <a class="inform_btn" href="{% url 'cardgame:game_list' %}">전적 목록</a>
+        </div>
         {% endif %} {% endif %} {% endif %} {% endif %}
       {% else %}
-      <script type="text/javascript">
-        alert('먼저 로그인을 해주세요🥺')
-        window.location.href = '{% url 'account_login' %}';
-      </script>
-      {% endif %}
+        <script type="text/javascript">
+          alert('먼저 로그인을 해주세요🥺')
+          window.location.href = '{% url 'account_login' %}';
+        </script>
+        {% endif %}
+      </div>
     </div>
     <footer class="footer">
       <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
