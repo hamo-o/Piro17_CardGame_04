@@ -124,15 +124,12 @@ def game_detail(request, pk) :
 def game_list(request):
     game = Game.objects.all() 
     users = User.objects.all()
-    attack_game = game.filter(
-        attacker=request.user) #attacker의 게임이 끝났을 때
-    defend_game = game.filter(
-        defender = request.user) #defender의 게임이 끝났을 때
+    attack_game = game.filter(attacker=request.user) 
+    defend_game = game.filter(defender = request.user)
 
-    games = attack_game.union(defend_game)
-    status_proceed = game.filter(game_status = 'proceed')
-    print(status_proceed)
-    stauts_end = game.filter(game_status = 'end')
+    games = attack_game.union(defend_game) #전체 게임
+    status_proceed = game.filter(game_status = 'proceed') #진행 중인 상태인 게임
+    stauts_end = game.filter(game_status = 'end') #완료된 상태인 게임
     context = {
         'status_proceed' : status_proceed,
         'stauts_end' : stauts_end,
