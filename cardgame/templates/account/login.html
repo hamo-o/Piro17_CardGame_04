@@ -34,6 +34,7 @@
 
   {% include "socialaccount/snippets/login_extra.html" %}
   <div class="signup_btn"><a href="{{ signup_url }}">회원가입</a></div>
+  <div class="signup_btn"><a href="{% url 'cardgame:main' %}">메인으로</a></div>
 
   {% else %}
   <p>{% blocktrans %}If you have not created an account yet, then please

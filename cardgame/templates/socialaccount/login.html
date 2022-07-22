@@ -23,5 +23,7 @@
   {% csrf_token %}
   <button type="submit" style="color:chartreuse">{% trans "Continue" %}</button>
 </form>
+<div class="signup_btn"><a href="{% url 'cardgame:main' %}">메인으로</a></div>
+
 </div>
 {% endblock %}
