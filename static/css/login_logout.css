@@ -18,23 +18,26 @@
     color: chartreuse;
 }
 
-.login {
+.text{
+    padding: 0.5rem;
+
+    color: white;
+}
+
+.login,
+.signup {
     margin: 2rem;
-    padding: 1rem;
+    padding: 2rem;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
 
     border: 0.1rem solid chartreuse;
     border-radius: 0.3rem;
 
     color: white;
-}
-
-.login p {
-    margin: 0.5rem 0 0.5rem 0;
 }
 
 .login label{
@@ -62,8 +65,15 @@ input[id="id_remember"]{
 input[id="id_remember"]:checked{
     background-color: chartreuse;
 }
+
+.login p,
+.signup p {
+    padding: 0.5rem;
+}
+
+.signup_btn,
 .login_btn {
-    margin: 0.5rem;
+    margin-top: 1rem;
     padding: 0.4rem 0.8rem 0.4rem;
   
     border: 0.1rem solid chartreuse;
@@ -74,6 +84,11 @@ input[id="id_remember"]:checked{
     font-weight: bold;
 }
 
+.login_text {
+    color: chartreuse;
+    font-weight: bold;
+}
+
 .social {
 
     display: flex;
@@ -81,6 +96,8 @@ input[id="id_remember"]:checked{
     align-items: center;
     justify-content: center;
 
+
+    text-align: center;
     color: white;
 }
 
@@ -91,7 +108,19 @@ input[id="id_remember"]:checked{
     font-weight: bold;
 }
 
-.signup_btn,
+.socialaccount_providers {
+    width: 18rem;
+    padding: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
 .logout_btn {
     margin: 1.5rem;
     padding: 0.4rem 0.8rem 0.4rem;
