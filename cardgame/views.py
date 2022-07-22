@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
+from django.urls import is_valid_path
 from django.views import View
 from . import forms
-from .models import User
+from .models import User, Game
 from django.contrib.auth import authenticate, login, logout
 
 class LoginView(View):
@@ -64,3 +65,46 @@ def game_rank(request):
         return render(request, 'cardgame/game_rank.html', context=context)
     else:
         return redirect("cardgame:main")
+def defend(request, pk):
+    game = Game.objects.get(pk = pk) 
+    
+    if request.method == "POST":
+        form = forms.DefendForm(request.POST, instance=game)
+        
+        if form.is_valid():
+            if game.attack_card == game.defend_card : #공격카드와 방어카드가 같은 수라면
+                game.tie_flag = 1 #무승부 표시
+            else :
+                if game.game_mode == 'big_num' : #큰 수가 이기는 게임이라면
+                    if game.attack_card > game.defend_card : #attacker가 이겼을 경우
+                        game.victory_user = game.attacker
+                        game.attacker.point += game.attack_card
+                        game.defender.point -= game.defend_card
+                    else : #defender가 이겼을 경우
+                        game.victory_user = game.defender
+                        game.attacker.point -= game.attack_card
+                        game.defender.point += game.defend_card
+                else : #작은 수가 이기는 게임이라면
+                    if game.attack_card < game.defend_card : #attacker가 이겼을 경우
+                        game.victory_user = game.attacker
+                        game.attacker.point += game.attack_card
+                        game.defender.point -= game.defend_card
+                    else : #defender가 이겼을 경우
+                        game.victory_user = game.defender
+                        game.attacker.point -= game.attack_card
+                        game.defender.point += game.defend_card
+            game.game_status = 'end' #game_status를 'end'로 변경
+            game.save() #game의 변경된 status 저장
+            game.attacker.save() #attacker의 변경된 point 저장
+            game.defender.save() #defender의 변경된 point 저장
+            form.save()
+            return redirect('/')
+        else :
+            return redirect('/')
+    else :
+        form = forms.DefendForm()
+        context = {
+            'form' : form,
+            'game' : game
+        }
+        return render(request, 'cardgame/defend.html', context=context)
