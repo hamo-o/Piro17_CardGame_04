@@ -22,7 +22,7 @@
       <p>{{game.id}}번째 대결 - {{game.attacker}} VS {{game.defender}}</p>
       {% if game.game_status == 'proceed' %}<!--게임 상태가 proceed라면-->
       {% if game.attacker == request_user %}<!--공격자가 자신이라면-->
-      <form action="/delete/{{game.id}}" method="post">
+      <form action="/game_delete/{{game.id}}" method="post">
         {% csrf_token%}
         <button class="btn">게임 취소</button>
       </form>
