@@ -29,7 +29,7 @@
         <div class="player">현재 플레이어 : {{user.username}}</div>
         {% for game in games reversed %}
         <div class="content-box">
-          <div class="versus">{{game.attacker.username}} VS {{game.defender.username}}</div>
+          <div class="versus">{{forloop.revcounter}}   {{game.attacker.username}} VS {{game.defender.username}}</div>
           <div class="result_detail">
             {% if game in status_proceed %}
               {% if game.attacker.username == current_user.username %}
