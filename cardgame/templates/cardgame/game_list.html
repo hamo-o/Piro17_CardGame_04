@@ -36,7 +36,7 @@
         {% for game in games reversed %}
         <div class="content-box">
           <div style="display:flex">
-            <span class="rank-num">{{forloop.revcounter}}</span>
+            <span class="rank-num">{{game.id}}</span>
             <div class="versus">{{game.attacker.username}}</div>
             <div class="vs">　VS　</div>
             <div class="versus">{{game.defender.username}}</div>
