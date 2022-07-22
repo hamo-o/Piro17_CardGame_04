@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "DOSGothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSGothic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "DOSGothic";
+}
+
 .navbar {
   height: 3rem;
   background: black;
@@ -25,10 +37,16 @@
 
   display: flex;
   align-items: center;
+  transition: color 0.5s;
 }
 
 .navbar-list li {
   margin: 0 1rem 0;
+  transition: color 0.5s;
+}
+
+.navbar-list li:hover {
+  color: chartreuse;
 }
 
 .content {
@@ -64,4 +82,16 @@
 
 .footer-content {
   font-size: 0.8rem;
+}
+
+.box-btn{
+  transition: color 0.5s;
+}
+
+.box-btn:hover{
+  cursor: pointer;
+  border: 0.1rem solid chartreuse;
+  border-radius: 0.3rem;
+  background: chartreuse;
+  color: black!important;
 }

@@ -2,31 +2,48 @@
 @import url(setting.css);
 
 .content-box {
-    width: 80%;
-    height: 10vh;
+  width: 80%;
+  height: 10vh;
 
-    color: white;
+  color: white;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title{
+  font-size:2rem;
+  width: 80%;
+  padding: 2rem 0;
+  color: white;
+  font-weight: bold;
+}
+.title p{
+  color:grey;
+  font-size:1rem;
+  margin-top: 1.5rem;
 }
 
 .player {
-    width: 80%;
-    padding: 2rem;
+  width: 80%;
+  padding: 2rem 0;
 
-    border-bottom: 0.1rem solid chartreuse;
+  border-bottom: 0.1rem solid chartreuse;
 
-    color: white;
-    font-weight: bold;
+  color: white;
+  font-weight: bold;
 }
 
 .result_detail {
-    width: 55%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vs{
+  color: chartreuse;
 }
 
 .cancel_btn,
