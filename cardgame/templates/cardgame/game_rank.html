@@ -1,24 +1,52 @@
 <!DOCTYPE html>
 <html lang="ko">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/game_rank.css' %}" />
     <title>4조</title>
   </head>
   <body>
-    <nav>
-      <a href="/">PIROGRAM CARDGAME(홈으로 이동)</a>
-      <li><a href="">게임하기</a></li>
-      <li><a href="">랭킹보기</a></li>
-      <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+    <nav class="navbar">
+      <div class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></div>
+      <ul class="navbar-list">
+        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
+        <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+      </ul>
     </nav>
-    <div>
-      <div>PIRO 명예의 전당</div>
-      {% for user in users %}
-      <div>{{ user.username }}님!</div>
-      <div>총점수 : {{ user.point }}점</div>
-      {% endfor %}
+    <div class="content">
+      <div class="content-box">
+        <div class="box-title">PIRO 명예의 전당</div>
+        {% for user in users %} {% if forloop.first %}
+        <div class="first-content">
+          <div>{{ forloop.counter }}등</div>
+          <div>{{ user.username }}님!</div>
+          <div>총점수 : {{ user.point }}점</div>
+        </div>
+        {% else %}
+        <div class="box-content">
+          <div>{{ forloop.counter }}등</div>
+          <div>{{ user.username }}님!</div>
+          <div>총점수 : {{ user.point }}점</div>
+        </div>
+        {% endif %} {% endfor %}
+        <a id="list_btn" href="">전적보기</a>
+      </div>
     </div>
+    <footer class="footer">
+      <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
+      <div class="footer-content">
+        뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
+      </div>
+    </footer>
   </body>
 </html>

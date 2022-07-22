@@ -1,0 +1,54 @@
+@import url(reset.css);
+@import url(setting.css);
+
+.box-title {
+  padding: 2rem;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.content-box {
+  width: 50vw;
+  height: 50vh;
+  padding: 2rem;
+
+  background: rgb(16, 16, 16);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-content {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: bold;
+  color: yellow;
+}
+
+.box-content {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+#list_btn {
+  margin: 2rem;
+  padding: 0.5rem 1rem 0.5rem;
+
+  border: 0.1rem solid chartreuse;
+  border-radius: 0.3rem;
+
+  color: chartreuse;
+  font-weight: bold;
+}
