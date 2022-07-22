@@ -31,7 +31,7 @@
         한 판 승부 숫자카드게임
       </div>
       <div class="content-login">{{user.username}} 님이 로그인 중</div>
-      <div class="content-game_btn"><a href="">게임하기</a></div>
+      <div class="content-game_btn"><a href="{% url 'cardgame:attack' %}">게임하기</a></div>
       <div class="content-list_btn">
         <a href="{% url 'cardgame:game_list' %}">전적보기</a>
       </div>
@@ -49,7 +49,7 @@
         한 판 승부 숫자카드게임
       </div>
       <div class="content-game_btn">
-        <a href="{% url 'account_signup' %}">게임하기</a>
+        <a href="{% url 'account_login' %}">게임하기</a>
       </div>
     </div>
     {% endif %} {% endblock content %}
