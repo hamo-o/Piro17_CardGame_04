@@ -54,7 +54,7 @@
         {% else %}
         <script type="text/javascript">
           alert('먼저 로그인을 해주세요🥺')
-          window.location.href = "{% url 'cardgame:login' %}";
+          window.location.href = '{% url 'account_login' %}';
         </script>
         {% endif %} {% endblock content %}
     </div>
