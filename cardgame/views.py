@@ -4,6 +4,7 @@ from django.views import View
 from . import forms
 from .models import User, Game
 from django.contrib.auth import authenticate, login, logout
+import random
 
 class LoginView(View):
     def get(self, request):
@@ -65,6 +66,7 @@ def game_rank(request):
         return render(request, 'cardgame/game_rank.html', context=context)
     else:
         return redirect("cardgame:main")
+    
 def defend(request, pk):
     game = Game.objects.get(pk = pk) 
     
@@ -108,6 +110,16 @@ def defend(request, pk):
             'game' : game
         }
         return render(request, 'cardgame/defend.html', context=context)
+
+def game_detail(request, pk) :
+    game = Game.objects.get(pk = pk)
+    request_user = request.user
+    
+    context = {
+        'game' : game,
+        'request_user' : request_user
+    }
+    return render(request, 'cardgame/game_detail.html', context=context)
 
 def game_list(request):
     game = Game.objects.all() 
