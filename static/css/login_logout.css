@@ -40,6 +40,32 @@
     color: white;
 }
 
+.login label{
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+input[id="id_login"]{
+    border-radius: 4px;
+}
+
+input[id="id_password"]{
+    border-radius: 4px;
+}
+
+input[id="id_remember"]{
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border: 2px solid #bcbcbc;
+	cursor: pointer;
+    
+}
+
+input[id="id_remember"]:checked{
+    background-color: chartreuse;
+}
+
 .login p,
 .signup p {
     padding: 0.5rem;
@@ -96,6 +122,56 @@
 }
 
 .logout_btn {
+    margin: 1.5rem;
+    padding: 0.4rem 0.8rem 0.4rem;
+  
+    border: 0.1rem solid chartreuse;
+    border-radius: 0.3rem;
+  
+    color: chartreuse;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.signup {
+    margin: 2rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 0.1rem solid chartreuse;
+    border-radius: 0.3rem;
+
+    color: white;
+}
+
+.signup_content{
+    color: white;
+    margin: 1rem 0 0.5rem 0;
+}
+
+.signup_content a{
+    color: chartreuse;
+}
+
+.signup p {
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.signup label{
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.signup input{
+    border-radius: 4px;
+}
+
+.signup button{
     margin: 1.5rem;
     padding: 0.4rem 0.8rem 0.4rem;
   
