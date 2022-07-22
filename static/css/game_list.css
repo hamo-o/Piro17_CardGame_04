@@ -47,10 +47,8 @@
 }
 
 
-.versus span {
-
+.rank-num {
     padding-right: 1rem;
-
     color: chartreuse;
     font-weight: bold;
 }

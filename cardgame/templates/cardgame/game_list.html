@@ -24,7 +24,7 @@
       </ul>
     </nav>
     <div class="content">
-      {% if user.is_authenticated %}
+      {% block content %} {% if user.is_authenticated %}
         <div class="title">
           <span>게임 전적</span>
           <p>
@@ -36,10 +36,8 @@
         {% for game in games reversed %}
         <div class="content-box">
           <div style="display:flex">
-            <div class="versus">
-            <span>{{forloop.revcounter}}</span>
-            {{game.attacker.username}}
-            </div>
+            <span class="rank-num">{{forloop.revcounter}}</span>
+            <div class="versus">{{game.attacker.username}}</div>
             <div class="vs">　VS　</div>
             <div class="versus">{{game.defender.username}}</div>
           </div>
@@ -62,9 +60,15 @@
               {% endif %}
               <a class="inform_btn box-btn" href="{% url 'cardgame:game_detail' pk=game.id %}">게임 정보</a>
             {% endif %}
+          </div>
         </div>
         {% endfor %}
-      </div>
+        {% else %}
+        <script type="text/javascript">
+          alert('먼저 로그인을 해주세요🥺')
+          window.location.href = '{% url 'account_login' %}';
+        </script>
+        {% endif %} {% endblock content %}
     </div>
       <footer class="footer">
         <div class="footer-title">피로그래밍 17기 화이팅 ~ ~ ₩ 최강4조</div>
@@ -72,11 +76,5 @@
           뭐라쓰지 뭐라쓰지 뭐라쓰지 | 조하연 심은서 이현영 장명지 조석현
         </div>
       </footer>
-      {% else %}
-        <script type="text/javascript">
-          alert('먼저 로그인을 해주세요🥺')
-          window.location.href = '{% url 'account_login' %}';
-        </script>
-        {% endif %}
   </body>
 </html>
