@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/defend.css' %}" />
     <title>4조</title>
   </head>
   <body>
-    <li><a href="/">PIROGRAM CARDGAME(홈으로 이동)</a></li>
-    {% block content %} {% if user.is_authenticated %}
-    <p>{{user.username}} 님이 로그인 중</p>
-    <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
-    <li><a href="">게임하기</a></li>
-    <li><a href="">랭킹보기</a></li>
-    {% endif %} {% endblock content %}
-    <div>
-      <p>{{game.attacker}}에게 반격하세요!</p>
+    {% if user.is_authenticated %}
+    <nav class="navbar">
+      <ul class="navbar-list">
+        <li class="navbar-title"><a href="/">PIROGRAM CARDGAME</a></li>
+        <li><a href="">게임하기</a></li>
+        <li><a href="{% url 'cardgame:game_rank' %}">랭킹보기</a></li>
+        <li><a href="{% url 'cardgame:log_out' %}">로그아웃</a></li>
+      </ul>
+    </nav>
+    <div class="main">
+      <div class="vs">
+        <p id="defeat-text">세기의 격돌...</p>
+        <p id="attackerVSdefender">{{game.attacker}} VS {{game.defender}}</p>
+      </div>
+      <div>
+        <p id="defend-text">{{game.attacker}}에게 반격하세요!</p>
+      </div>
+      <form action="/defend/{{game.id}}/" method="POST">
+        {% csrf_token %}
+        <table>
+          {{form.as_p}}
+        </table>
+        <input type="submit" value="반격하기!" />
+      </form>
     </div>
-    <form action="/defend/{{game.id}}/" method="POST">
-      {% csrf_token %}
-      <table>
-        {{form.as_p}}
-      </table>
-      <input type="submit" value="반격하기!" />
-    </form>
+    {% else %}
+    <script type="text/javascript">
+      alert('먼저 로그인을 해주세요🥺')
+      window.location.href = '{% url 'cardgame:login' %}';
+    </script>
+    {% endif %}
   </body>
 </html>
