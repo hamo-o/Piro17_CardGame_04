@@ -7,6 +7,7 @@ class User(AbstractUser):
 
 MODE_CHOICE = {('big_num', 'big_num'),('small_num', 'small_num')}
 STATUS_CHOICE = {('proceed', 'proceed'),('end', 'end')}
+
 class Game(models.Model):
   attacker = models.ForeignKey(User, on_delete=models.CASCADE, related_name="attacker")
   defender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="defender", null=True)

@@ -5,16 +5,7 @@
     {% block extra_head %} {% endblock %}
   </head>
   <body>
-    {% block body %} {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %} {% block content %}
+    {% block body %} {% block content %}
     <br />
     {% endblock %} {% endblock %} {% block extra_body %}
     <br />

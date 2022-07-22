@@ -1,11 +1,14 @@
+from secrets import choice
 from django.shortcuts import redirect, render
 from django.urls import is_valid_path
 from django.views import View
 from . import forms
 from .models import User, Game
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
 import random
 from django import forms as f
+
 
 class LoginView(View):
     def get(self, request):
@@ -164,3 +167,33 @@ def game_delete(request, pk):
     game = Game.objects.get(id=pk)
     game.delete()
     return redirect("cardgame:game_list")
+
+
+
+def attack(request):
+    games = Game.objects.all()
+
+    if request.method == 'POST':
+        form = forms.AttackForm(request.POST)
+        if form.is_valid():
+            game = form.save(commit=False)
+            game.attacker = request.user
+            game.game_mode=random.choice(['big_num', 'small_num'])
+            game.game_status='proceed'
+            game.save()
+            return redirect('game_list/')
+        else :
+            return redirect('game_list/')
+    else :
+        form = forms.AttackForm()
+        user = get_user_model()
+        form = forms.AttackForm()
+        form.fields['defender'].queryset = user.objects.all().exclude(id=request.user.id)
+        context={
+            'form':form,
+            'games':games,
+        }
+        return render(request, 'cardgame/attack.html', context=context)
+
+
+
